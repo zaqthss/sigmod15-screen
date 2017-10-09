@@ -36,9 +36,9 @@ mainScreen()
 Input:
 
 ```
-double sMax = 6
-double sMin = -6
-long T = 1
+double sMax = 6           // maximum speed
+double sMin = -6          // minimum speed
+long T = 1                // window size
 TimeSeries dirtySeries
 ```
 
