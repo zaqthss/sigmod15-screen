@@ -3,7 +3,6 @@ package cn.edu.thu.screen.util;
 import cn.edu.thu.screen.entity.TimePoint;
 import cn.edu.thu.screen.entity.TimeSeries;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -18,12 +17,12 @@ public class Assist {
   public static String PATH = "data/";
 
   /**
-   * Basic attributes: timestamp, dirty, label, truth
+   * Basic attributes: timestamp, dirty, truth
    *
    * @param filename filename
    * @param index which column besides timestamp should be read
    * @param splitOp to split up the lines
-   * @return data in time series form
+   * @return data in timeseries form
    */
   public TimeSeries readData(String filename, int index, String splitOp) {
     TimeSeries timeSeries = new TimeSeries();
@@ -48,9 +47,6 @@ public class Assist {
 
       br.close();
       fr.close();
-    } catch (FileNotFoundException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -62,15 +58,14 @@ public class Assist {
   /**
    * RMS sqrt(|modify - truth|^2 / len)
    *
-   * @param truthSeries
-   * @param resultSeries
-   * @return
+   * @param truthSeries truth
+   * @param resultSeries after repair
+   * @return RMS error
    */
   public double calcRMS(TimeSeries truthSeries, TimeSeries resultSeries) {
     double cost = 0;
     double delta;
     int len = truthSeries.getLength();
-    int labelNum = 0;
 
     for (int i = 0; i < len; ++i) {
       delta = resultSeries.getTimeseries().get(i).getModify()
@@ -78,7 +73,7 @@ public class Assist {
 
       cost += delta * delta;
     }
-    cost /= (len - labelNum);
+    cost /= len;
 
     return Math.sqrt(cost);
   }

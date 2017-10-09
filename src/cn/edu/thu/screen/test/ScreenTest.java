@@ -22,6 +22,9 @@ public class ScreenTest {
     TimeSeries dirtySeries = assist.readData(inputFileName, 1, splitOp);
     TimeSeries truthSeries = assist.readData(inputFileName, 2, splitOp);
 
+    double rmsDirty = assist.calcRMS(truthSeries, dirtySeries);
+    System.out.println("Dirty RMS error is " + rmsDirty);
+
     double sMax = 6;
     double sMin = -6;
     long T = 1;
@@ -30,6 +33,6 @@ public class ScreenTest {
 
     double rms = assist.calcRMS(truthSeries, resultSeries);
 
-    System.out.println("RMS error is " + rms);
+    System.out.println("Repair RMS error is " + rms);
   }
 }

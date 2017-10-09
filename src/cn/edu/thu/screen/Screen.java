@@ -21,6 +21,13 @@ public class Screen {
   private double SMAX;  // maximum speed
   private double SMIN;  // minimum speed
 
+  /**
+   *
+   * @param timeseries timeseries
+   * @param sMax maximum allowed speed
+   * @param sMin minimum allowed speed
+   * @param t the window size
+   */
   public Screen(TimeSeries timeseries, double sMax, double sMin, long t) {
     setTimeSeries(timeseries);
     setT(t);
@@ -44,6 +51,10 @@ public class Screen {
     this.SMIN = SMIN;
   }
 
+  /**
+   *
+   * @return timeseries after repair
+   */
   public TimeSeries mainScreen() {
     ArrayList<TimePoint> totalList = timeseries.getTimeseries();
     int size = totalList.size();
@@ -134,7 +145,12 @@ public class Screen {
     return resultSeries;
   }
 
-  // Algorithm 1
+  /**
+   * Algorithm 1
+   *
+   * @param timeSeries timeseries in a window
+   * @param prePoint the former modified point
+   */
   private void local(TimeSeries timeSeries, TimePoint prePoint) {
     ArrayList<TimePoint> tempList = timeSeries.getTimeseries();
     // get bound
