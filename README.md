@@ -48,6 +48,17 @@ Output
 Timeseries resultSeries
 ```
 
+Typos in the draft
+----------
+Sorry for the typos in the draft in Section 3.2.1, page 4.
+Above formula (7), the equations of $|xi-xi'|$ should be modified as follows:
+
+```
+xi-xk'+smax(tk-ti)
+xk'-xi-smin(tk-ti)
+0
+```
+
 Citation
 ----------
 If you use this code for your research, please consider citing:
